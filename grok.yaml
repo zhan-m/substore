@@ -249,7 +249,7 @@ proxy-groups:
       - "🔗 全局直连"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -265,7 +265,7 @@ proxy-groups:
     exclude-filter: "(?i)落地|家宽"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -278,7 +278,7 @@ proxy-groups:
     dialer-proxy: "⚙️ 节点选择"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -291,7 +291,7 @@ proxy-groups:
     exclude-filter: "(?i)落地|家宽"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -303,7 +303,7 @@ proxy-groups:
     exclude-filter: "(?i)落地|家宽"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -316,7 +316,7 @@ proxy-groups:
     exclude-filter: "(?i)落地|家宽"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -329,7 +329,7 @@ proxy-groups:
     exclude-filter: "(?i)落地|家宽"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -349,7 +349,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -370,7 +370,7 @@ proxy-groups:
     exclude-filter: "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -390,7 +390,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -410,7 +410,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -430,7 +430,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -450,7 +450,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -470,7 +470,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -490,7 +490,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -510,7 +510,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -523,7 +523,7 @@ proxy-groups:
       - "DIRECT"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -542,7 +542,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -555,7 +555,7 @@ proxy-groups:
       - "DIRECT"
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -575,7 +575,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -595,7 +595,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
@@ -615,7 +615,7 @@ proxy-groups:
     include-all: true
     interval: 3600
     timeout: 3000
-    url: "https://www.google.com/generate_204"
+    url: "https://test.zhan-m.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
