@@ -55,14 +55,14 @@ rule-providers:
     format: yaml
     behavior: domain
     interval: 86400
-    url: "https://cdn.jsdelivr.net/gh/wangbaoqiang-lixiaolu/substore@main/custom-direct.yaml"
+    url: "https://cdn.jsdelivr.net/gh/zhan-m/substore@main/custom-direct.yaml"
     path: "./ruleset/custom-direct.yaml"  
   customproxy:
     type: http
     format: yaml
     behavior: domain
     interval: 86400
-    url: "https://fastly.jsdelivr.net/gh/wangbaoqiang-lixiaolu/substore@main/custom-proxy.yaml"
+    url: "https://fastly.jsdelivr.net/gh/zhan-m/substore@main/custom-proxy.yaml"
     path: "./ruleset/custom-proxy.yaml"
   icloud:
     type: http
