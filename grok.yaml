@@ -269,7 +269,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/adjust.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/adjust.svg"
 
   - name: "🕊️ 落地节点"
     type: select
@@ -282,7 +282,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/openwrt.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/openwrt.svg"
 
   - name: "♻️ 延迟选优"
     type: url-test
@@ -295,7 +295,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/speed.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/speed.svg"
 
   - name: "🚑 故障转移"
     type: fallback
@@ -307,7 +307,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/ambulance.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/ambulance.svg"
 
   - name: "⚖️ 负载均衡(散列)"
     type: load-balance
@@ -320,7 +320,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/merry_go.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/merry_go.svg"
 
   - name: "☁️ 负载均衡(轮询)"
     type: load-balance
@@ -333,7 +333,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/balance.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/balance.svg"
 
   - name: "🌍 国外媒体"
     type: select
@@ -353,7 +353,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/youtube.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/youtube.svg"
 
   - name: "💸 ChatGPT-Gemini-XAI-Perplexity"
     type: select
@@ -374,7 +374,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/chatgpt.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/chatgpt.svg"
 
   - name: "💵 Claude"
     type: select
@@ -394,7 +394,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/claude.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/claude.svg"
 
   - name: "🪙 Bybit"
     type: select
@@ -414,7 +414,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/link.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
 
   - name: "🅿️ PikPak"
     type: select
@@ -434,7 +434,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/link.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
 
   - name: "📲 电报消息"
     type: select
@@ -454,7 +454,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/telegram.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/telegram.svg"
 
   - name: "📢 谷歌服务"
     type: select
@@ -474,7 +474,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/google.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/google.svg"
 
   - name: "🍎 苹果服务"
     type: select
@@ -494,7 +494,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/apple.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/apple.svg"
 
   - name: "Ⓜ️ 微软服务"
     type: select
@@ -514,7 +514,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/microsoft.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/microsoft.svg"
 
   - name: "🥰 广告过滤"
     type: select
@@ -527,7 +527,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/bug.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/bug.svg"
 
   - name: "🔗 全局直连"
     type: select
@@ -546,7 +546,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/link.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
 
   - name: "❌ 全局拦截"
     type: select
@@ -559,7 +559,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/block.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/block.svg"
 
   - name: "🐬 自定义直连"
     type: select
@@ -579,7 +579,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/unknown.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/unknown.svg"
 
   - name: "🐳 自定义代理"
     type: select
@@ -599,7 +599,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/openwrt.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/openwrt.svg"
 
   - name: "🐟 漏网之鱼"
     type: select
@@ -619,6 +619,6 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://fastly.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/main/docs/assets/icons/fish.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/fish.svg"
 
 global-ua: "clash-verge/v2.2.0"
