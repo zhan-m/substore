@@ -16,7 +16,7 @@
       },
       "customName": "链式代理",
       "id": "linkchain-001",
-      "disabled": false
+      "disabled": true
     },
     {
       "type": "Script Operator",
