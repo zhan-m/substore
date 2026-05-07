@@ -244,8 +244,9 @@ proxy-groups:
   - name: "🔰 模式选择"
     type: select
     proxies:
-      - "⚙️ 节点选择"
-      - "🕊️ 落地节点"
+      - "⛓️ 链式代理"
+      - "🛫 中转直连"
+      - "🛬 落地直连"
       - "🔗 全局直连"
     interval: 3600
     timeout: 3000
@@ -254,13 +255,10 @@ proxy-groups:
     max-failed-times: 3
     hidden: false
 
-  - name: "⚙️ 节点选择"
+  - name: "🛫 中转直连"
     type: select
     proxies:
       - "♻️ 延迟选优"
-      - "🚑 故障转移"
-      - "⚖️ 负载均衡(散列)"
-      - "☁️ 负载均衡(轮询)"
     include-all: true
     exclude-filter: "(?i)落地|家宽"
     interval: 3600
@@ -271,11 +269,23 @@ proxy-groups:
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/adjust.svg"
 
-  - name: "🕊️ 落地节点"
+  - name: "🛬 落地直连"
     type: select
     include-all: true
     filter: "(?i)落地|家宽"
-    dialer-proxy: "⚙️ 节点选择"
+    interval: 3600
+    timeout: 3000
+    url: "https://test.zhan-m.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/openwrt.svg"
+
+  - name: "⛓️ 链式代理"
+    type: select
+    include-all: true
+    filter: "(?i)落地|家宽"
+    dialer-proxy: "🛫 中转直连"
     interval: 3600
     timeout: 3000
     url: "https://test.zhan-m.com/generate_204"
@@ -296,44 +306,6 @@ proxy-groups:
     max-failed-times: 3
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/speed.svg"
-
-  - name: "🚑 故障转移"
-    type: fallback
-    include-all: true
-    exclude-filter: "(?i)落地|家宽"
-    interval: 3600
-    timeout: 3000
-    url: "https://test.zhan-m.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/ambulance.svg"
-
-  - name: "⚖️ 负载均衡(散列)"
-    type: load-balance
-    strategy: consistent-hashing
-    include-all: true
-    exclude-filter: "(?i)落地|家宽"
-    interval: 3600
-    timeout: 3000
-    url: "https://test.zhan-m.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/merry_go.svg"
-
-  - name: "☁️ 负载均衡(轮询)"
-    type: load-balance
-    strategy: round-robin
-    include-all: true
-    exclude-filter: "(?i)落地|家宽"
-    interval: 3600
-    timeout: 3000
-    url: "https://test.zhan-m.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/balance.svg"
 
   - name: "🌍 国外媒体"
     type: select
