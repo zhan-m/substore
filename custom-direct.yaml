@@ -17,4 +17,9 @@ payload:
   - mtalk4.google.com
   - mtalk-staging.google.com
   - mtalk-dev.google.com
-  - DOMAIN-SUFFIX,*.zhan-m.com
+  - DOMAIN-SUFFIX,zhan-m.com
+  - DOMAIN-SUFFIX,sangfor.com.cn
+  - DOMAIN-SUFFIX,sangfor.com
+  - DOMAIN-SUFFIX,forenova.com
+  - DOMAIN-SUFFIX,sangforcloud.com
+  - DOMAIN-KEYWORD,sangfor
