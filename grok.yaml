@@ -204,6 +204,13 @@ rule-providers:
     behavior: classical
     url: "https://github.zhan-m.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/microsoft.yaml"
     path: "./ruleset/MetaCubeX/microsoft.yaml"
+  discord:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: "https://github.zhan-m.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/discord.yaml"
+    path: "./ruleset/MetaCubeX/discord.yaml"
 
 rules:
   - "PROCESS-NAME,dota2.exe,🐬 自定义直连"
@@ -222,6 +229,7 @@ rules:
   - "RULE-SET,google-gemini,💸 ChatGPT-Gemini-XAI-Perplexity"
   - "RULE-SET,xai,💸 ChatGPT-Gemini-XAI-Perplexity"
   - "RULE-SET,perplexity,💸 ChatGPT-Gemini-XAI-Perplexity"
+  - "RULE-SET,discord,💬 Discord"
   - "RULE-SET,applications,🔗 全局直连"
   - "RULE-SET,private,🔗 全局直连"
   - "RULE-SET,reject,🥰 广告过滤"
@@ -361,6 +369,24 @@ proxy-groups:
     max-failed-times: 3
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/claude.svg"
+
+  - name: "💬 Discord"
+    type: select
+    proxies:
+      - "🛬 落地直连"
+      - "🔰 模式选择"
+      - "⛓️ 链式代理"
+      - "🛫 中转直连"
+      - "♻️ 延迟选优"
+      - "🔗 全局直连"
+    include-all: true
+    interval: 3600
+    timeout: 3000
+    url: "https://test.zhan-m.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/discord.svg"
 
   - name: "🪙 Bybit"
     type: select
