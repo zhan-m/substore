@@ -17,9 +17,12 @@ payload:
   - mtalk4.google.com
   - mtalk-staging.google.com
   - mtalk-dev.google.com
-  - DOMAIN-SUFFIX,zhan-m.com
-  - DOMAIN-SUFFIX,sangfor.com.cn
-  - DOMAIN-SUFFIX,sangfor.com
-  - DOMAIN-SUFFIX,forenova.com
-  - DOMAIN-SUFFIX,sangforcloud.com
-  - DOMAIN-KEYWORD,sangfor
+  # 注意：本文件在 grok.yaml 中声明为 behavior: domain，
+  # payload 只能是裸域名 / 通配符，不能写 DOMAIN-SUFFIX, 之类的规则前缀。
+  # "+.x" 等价于 DOMAIN-SUFFIX,x（匹配 x 及其所有子域）。
+  # DOMAIN-KEYWORD 在 domain 行为下无等价写法，已内联到 grok.yaml 的 rules 里。
+  - "+.zhan-m.com"
+  - "+.sangfor.com.cn"
+  - "+.sangfor.com"
+  - "+.forenova.com"
+  - "+.sangforcloud.com"

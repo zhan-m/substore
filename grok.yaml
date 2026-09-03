@@ -56,7 +56,14 @@ rule-providers:
     behavior: domain
     interval: 86400
     url: "https://cdn.jsdelivr.net/gh/zhan-m/substore@main/custom-direct.yaml"
-    path: "./ruleset/custom-direct.yaml"  
+    path: "./ruleset/custom-direct.yaml"
+  customdirectip:
+    type: http
+    format: yaml
+    behavior: ipcidr
+    interval: 86400
+    url: "https://cdn.jsdelivr.net/gh/zhan-m/substore@main/custom-direct-ip.yaml"
+    path: "./ruleset/custom-direct-ip.yaml"
   customproxy:
     type: http
     format: yaml
@@ -213,9 +220,13 @@ rule-providers:
     path: "./ruleset/MetaCubeX/discord.yaml"
 
 rules:
+  # 公司内网 IP 段无条件直连，必须排在所有规则最前。
+  # 直接指向「🔗 全局直连」而不是可被手动切换的「🐬 自定义直连」，避免误选节点。
+  - "RULE-SET,customdirectip,🔗 全局直连,no-resolve"
   - "PROCESS-NAME,dota2.exe,🐬 自定义直连"
   - "PROCESS-NAME,steam.exe,🐬 自定义直连"
   - "RULE-SET,customdirect,🐬 自定义直连"
+  - "DOMAIN-KEYWORD,sangfor,🐬 自定义直连"
   - "RULE-SET,customproxy,🐳 自定义代理"
   - "DOMAIN-SUFFIX,googleapis.cn,🔰 模式选择"
   - "DOMAIN-SUFFIX,gstatic.com,🔰 模式选择"
