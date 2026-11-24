@@ -218,6 +218,13 @@ rule-providers:
     behavior: classical
     url: "https://github.zhan-m.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/discord.yaml"
     path: "./ruleset/MetaCubeX/discord.yaml"
+  dmm:
+    type: http
+    format: yaml
+    interval: 86400
+    behavior: classical
+    url: "https://github.zhan-m.com/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/refs/heads/meta/geo/geosite/classical/dmm.yaml"
+    path: "./ruleset/MetaCubeX/dmm.yaml"
 
 rules:
   # 拒绝 aTrust 慢网关的 TCP 6441 连接，优先于直连规则，让客户端尝试其他候选网关。
@@ -246,6 +253,8 @@ rules:
   - "RULE-SET,applications,🔗 全局直连"
   - "RULE-SET,private,🔗 全局直连"
   - "RULE-SET,reject,🥰 广告过滤"
+  - "RULE-SET,dmm,🇯🇵 日本服务"
+  - "DOMAIN-SUFFIX,mgstage.com,🇯🇵 日本服务"
   - "RULE-SET,microsoft,Ⓜ️ 微软服务"
   - "RULE-SET,icloud,🍎 苹果服务"
   - "RULE-SET,apple,🍎 苹果服务"
@@ -328,6 +337,20 @@ proxy-groups:
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/speed.svg"
 
+  - name: "🇯🇵 日本选优"
+    type: url-test
+    tolerance: 50
+    include-all: true
+    filter: "(?i)日本|东京|大阪|jp|japan"
+    exclude-filter: "(?i)落地|家宽"
+    interval: 3600
+    timeout: 3000
+    url: "http://www.gstatic.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/flags/jp.svg"
+
   - name: "🌍 国外媒体"
     type: select
     proxies:
@@ -400,6 +423,27 @@ proxy-groups:
     max-failed-times: 3
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/discord.svg"
+
+  - name: "🇯🇵 日本服务"
+    type: select
+    proxies:
+      - "🇯🇵 日本选优"
+      - "🔰 模式选择"
+      - "⛓️ 链式代理"
+      - "🛫 中转直连"
+      - "🛬 落地直连"
+      - "♻️ 延迟选优"
+      - "🔗 全局直连"
+    include-all: true
+    filter: "(?i)日本|东京|大阪|jp|japan"
+    exclude-filter: "(?i)落地|家宽"
+    interval: 3600
+    timeout: 3000
+    url: "http://www.gstatic.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/flags/jp.svg"
 
   - name: "🪙 Bybit"
     type: select
