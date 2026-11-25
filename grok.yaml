@@ -1,8 +1,9 @@
-# Substore 兼容配置文件，基于 Mihomo Party 脚本改编
-# 保留 DNS、规则提供者、规则和代理组结构
-# 移除静态节点，依赖 Substore 订阅提供节点
-# 落地节点筛选规则：节点名称包含“落地”或“家宽”，通过组级 dialer-proxy 实现链式代理
-# 注意：若链式代理未生效，需在 Substore 中为筛选出的落地节点（名称含“落地”或“家宽”）添加节点级 dialer-proxy: ⚙️ 节点选择
+# Substore 兼容配置文件，基于 Mihomo Party 脚本改编，与 linkproxy-singbox.json 保持对等
+# 保留 DNS、规则提供者、规则和代理组结构；移除静态节点，依赖 Substore 订阅提供节点
+# 链式代理：⛓️ 链式代理通过组级 dialer-proxy 指向 🛫 链式中转 → ♻️ 链式选优（专测 http://test.zhan-m.com/generate_204）
+# 直连中转：🛫 直连中转 → ♻️ 直连选优（专测 http://www.gstatic.com/generate_204）；Mihomo 按 (节点, testUrl) 隔离测速历史，无需克隆节点
+
+unified-delay: true
 
 dns:
   enable: true
@@ -232,6 +233,13 @@ rules:
   # 公司内网 IP 段直连，排在上述精确拒绝规则之后、其他分流规则之前。
   # 直接指向「🔗 全局直连」而不是可被手动切换的「🐬 自定义直连」，避免误选节点。
   - "RULE-SET,customdirectip,🔗 全局直连,no-resolve"
+  # 海外云图专属域名（需排在 customdirect 与 sangfor 关键字直连之前）
+  - "DOMAIN,x.sangfor.com,海外云图"
+  - "DOMAIN,xaasauth.sangfor.com,海外云图"
+  - "DOMAIN,xaas.sangfor.com,海外云图"
+  - "DOMAIN,x.forenova.com,海外云图"
+  - "DOMAIN,xaasauth.forenova.com,海外云图"
+  - "DOMAIN,xaas.forenova.com,海外云图"
   - "PROCESS-NAME,dota2.exe,🐬 自定义直连"
   - "PROCESS-NAME,steam.exe,🐬 自定义直连"
   - "RULE-SET,customdirect,🐬 自定义直连"
@@ -243,22 +251,22 @@ rules:
   - "DOMAIN-SUFFIX,github.io,🔰 模式选择"
   - "DOMAIN,v2rayse.com,🔰 模式选择"
   - "RULE-SET,openai,💸 ChatGPT-Gemini-XAI-Perplexity"
-  - "RULE-SET,pikpak,🅿️ PikPak"
-  - "RULE-SET,bybit,🪙 Bybit"
+  - "RULE-SET,pikpak,🔰 模式选择"
+  - "RULE-SET,bybit,🔰 模式选择"
   - "RULE-SET,anthropic,💵 Claude"
   - "RULE-SET,google-gemini,💸 ChatGPT-Gemini-XAI-Perplexity"
   - "RULE-SET,xai,💸 ChatGPT-Gemini-XAI-Perplexity"
   - "RULE-SET,perplexity,💸 ChatGPT-Gemini-XAI-Perplexity"
-  - "RULE-SET,discord,💬 Discord"
+  - "RULE-SET,discord,🔰 模式选择"
   - "RULE-SET,applications,🔗 全局直连"
   - "RULE-SET,private,🔗 全局直连"
-  - "RULE-SET,reject,🥰 广告过滤"
+  - "RULE-SET,reject,REJECT"
   - "RULE-SET,dmm,🇯🇵 日本服务"
   - "DOMAIN-SUFFIX,mgstage.com,🇯🇵 日本服务"
-  - "RULE-SET,microsoft,Ⓜ️ 微软服务"
-  - "RULE-SET,icloud,🍎 苹果服务"
-  - "RULE-SET,apple,🍎 苹果服务"
-  - "RULE-SET,google,📢 谷歌服务"
+  - "RULE-SET,microsoft,🔰 模式选择"
+  - "RULE-SET,icloud,🔰 模式选择"
+  - "RULE-SET,apple,🔰 模式选择"
+  - "RULE-SET,google,🔰 模式选择"
   - "RULE-SET,proxy,🔰 模式选择"
   - "RULE-SET,gfw,🔰 模式选择"
   - "RULE-SET,tld-not-cn,🔰 模式选择"
@@ -275,8 +283,8 @@ proxy-groups:
     type: select
     proxies:
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
       - "🔗 全局直连"
     interval: 3600
     timeout: 3000
@@ -285,10 +293,23 @@ proxy-groups:
     max-failed-times: 3
     hidden: false
 
-  - name: "🛫 中转直连"
+  - name: "⛓️ 链式代理"
+    type: select
+    include-all: true
+    filter: "(?i)落地|家宽"
+    dialer-proxy: "🛫 链式中转"
+    interval: 3600
+    timeout: 3000
+    url: "http://www.gstatic.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/openwrt.svg"
+
+  - name: "🛫 直连中转"
     type: select
     proxies:
-      - "♻️ 延迟选优"
+      - "♻️ 直连选优"
     include-all: true
     exclude-filter: "(?i)落地|家宽"
     interval: 3600
@@ -299,7 +320,7 @@ proxy-groups:
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/adjust.svg"
 
-  - name: "🛬 落地直连"
+  - name: "🛬 直连落地"
     type: select
     include-all: true
     filter: "(?i)落地|家宽"
@@ -311,25 +332,56 @@ proxy-groups:
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/openwrt.svg"
 
-  - name: "⛓️ 链式代理"
+  - name: "🔗 全局直连"
     type: select
+    proxies:
+      - "DIRECT"
+      - "⛓️ 链式代理"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
     include-all: true
-    filter: "(?i)落地|家宽"
-    dialer-proxy: "🛫 中转直连"
     interval: 3600
     timeout: 3000
     url: "http://www.gstatic.com/generate_204"
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/openwrt.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
 
-  - name: "♻️ 延迟选优"
+  - name: "🛫 链式中转"
+    type: select
+    proxies:
+      - "♻️ 链式选优"
+    include-all: true
+    exclude-filter: "(?i)落地|家宽"
+    interval: 3600
+    timeout: 3000
+    url: "http://test.zhan-m.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/adjust.svg"
+
+  - name: "♻️ 链式选优"
     type: url-test
     tolerance: 50
     include-all: true
     exclude-filter: "(?i)落地|家宽"
-    interval: 3600
+    interval: 600
+    timeout: 3000
+    url: "http://test.zhan-m.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/speed.svg"
+
+  - name: "♻️ 直连选优"
+    type: url-test
+    tolerance: 50
+    include-all: true
+    exclude-filter: "(?i)落地|家宽"
+    interval: 600
     timeout: 3000
     url: "http://www.gstatic.com/generate_204"
     lazy: true
@@ -343,7 +395,7 @@ proxy-groups:
     include-all: true
     filter: "(?i)日本|东京|大阪|jp|japan"
     exclude-filter: "(?i)落地|家宽"
-    interval: 3600
+    interval: 600
     timeout: 3000
     url: "http://www.gstatic.com/generate_204"
     lazy: true
@@ -356,9 +408,9 @@ proxy-groups:
     proxies:
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
       - "🔗 全局直连"
     include-all: true
     interval: 3600
@@ -374,9 +426,9 @@ proxy-groups:
     proxies:
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
       - "🔗 全局直连"
     include-all: true
     exclude-filter: "(?i)港|hk|hongkong|hong kong|俄|ru|russia|澳|macao"
@@ -393,9 +445,9 @@ proxy-groups:
     proxies:
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
       - "🔗 全局直连"
     include-all: true
     interval: 3600
@@ -406,14 +458,14 @@ proxy-groups:
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/claude.svg"
 
-  - name: "💬 Discord"
+  - name: "📲 电报消息"
     type: select
     proxies:
-      - "🛬 落地直连"
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
       - "🔗 全局直连"
     include-all: true
     interval: 3600
@@ -422,7 +474,25 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/discord.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/telegram.svg"
+
+  - name: "海外云图"
+    type: select
+    proxies:
+      - "♻️ 直连选优"
+      - "🔰 模式选择"
+      - "⛓️ 链式代理"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "🔗 全局直连"
+    include-all: true
+    interval: 3600
+    timeout: 3000
+    url: "http://www.gstatic.com/generate_204"
+    lazy: true
+    max-failed-times: 3
+    hidden: false
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
 
   - name: "🇯🇵 日本服务"
     type: select
@@ -430,9 +500,9 @@ proxy-groups:
       - "🇯🇵 日本选优"
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
       - "🔗 全局直连"
     include-all: true
     filter: "(?i)日本|东京|大阪|jp|japan"
@@ -445,14 +515,14 @@ proxy-groups:
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/flags/jp.svg"
 
-  - name: "🪙 Bybit"
+  - name: "🐟 漏网之鱼"
     type: select
     proxies:
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
       - "🔗 全局直连"
     include-all: true
     interval: 3600
@@ -461,140 +531,7 @@ proxy-groups:
     lazy: true
     max-failed-times: 3
     hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
-
-  - name: "🅿️ PikPak"
-    type: select
-    proxies:
-      - "🔰 模式选择"
-      - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
-      - "🔗 全局直连"
-    include-all: true
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
-
-  - name: "📲 电报消息"
-    type: select
-    proxies:
-      - "🔰 模式选择"
-      - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
-      - "🔗 全局直连"
-    include-all: true
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/telegram.svg"
-
-  - name: "📢 谷歌服务"
-    type: select
-    proxies:
-      - "🔰 模式选择"
-      - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
-      - "🔗 全局直连"
-    include-all: true
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/google.svg"
-
-  - name: "🍎 苹果服务"
-    type: select
-    proxies:
-      - "🔰 模式选择"
-      - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
-      - "🔗 全局直连"
-    include-all: true
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/apple.svg"
-
-  - name: "Ⓜ️ 微软服务"
-    type: select
-    proxies:
-      - "🔰 模式选择"
-      - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
-      - "🔗 全局直连"
-    include-all: true
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/microsoft.svg"
-
-  - name: "🥰 广告过滤"
-    type: select
-    proxies:
-      - "REJECT"
-      - "DIRECT"
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/bug.svg"
-
-  - name: "🔗 全局直连"
-    type: select
-    proxies:
-      - "DIRECT"
-      - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
-    include-all: true
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/link.svg"
-
-  - name: "❌ 全局拦截"
-    type: select
-    proxies:
-      - "REJECT"
-      - "DIRECT"
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/block.svg"
+    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/fish.svg"
 
   - name: "🐬 自定义直连"
     type: select
@@ -602,9 +539,9 @@ proxy-groups:
       - "🔗 全局直连"
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
     include-all: true
     interval: 3600
     timeout: 3000
@@ -619,9 +556,9 @@ proxy-groups:
     proxies:
       - "🔰 模式选择"
       - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
+      - "🛫 直连中转"
+      - "🛬 直连落地"
+      - "♻️ 直连选优"
       - "🔗 全局直连"
     include-all: true
     interval: 3600
@@ -631,23 +568,5 @@ proxy-groups:
     max-failed-times: 3
     hidden: false
     icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/openwrt.svg"
-
-  - name: "🐟 漏网之鱼"
-    type: select
-    proxies:
-      - "🔰 模式选择"
-      - "⛓️ 链式代理"
-      - "🛫 中转直连"
-      - "🛬 落地直连"
-      - "♻️ 延迟选优"
-      - "🔗 全局直连"
-    include-all: true
-    interval: 3600
-    timeout: 3000
-    url: "http://www.gstatic.com/generate_204"
-    lazy: true
-    max-failed-times: 3
-    hidden: false
-    icon: "https://cdn.jsdelivr.net/gh/clash-verge-rev/clash-verge-rev.github.io/docs/assets/icons/fish.svg"
 
 global-ua: "clash-verge/v2.2.0"
